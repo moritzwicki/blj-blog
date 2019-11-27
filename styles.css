@@ -1,0 +1,70 @@
+#container {
+    background-color: rgb(235, 223, 175);
+    display: grid;
+    grid-template-columns: 200px,500px;
+    grid-template-rows: 500px,500px;
+    padding-bottom: 100px;
+    
+}
+
+
+
+
+h2 {
+    display: grid;
+    justify-content: center;
+    padding: 25px;
+}
+.sidebar {
+    display: grid;  
+    justify-content: left;
+    grid-column-start: 1;
+    grid-column-end: 2; 
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin: 10px;
+}
+
+.inhalt {
+
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    margin: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}
+.header {
+    display: grid;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin: 10px;
+    justify-content: center;
+}
+.eingabe {
+    padding-right: 100%;
+    
+}
+.eingabetext {
+    padding-right: 100%;
+    
+   
+}
+.nameneingabe {
+    padding: 10px;
+    margin-bottom: 25px;
+}
+.blogtitel {
+    padding: 10px;
+    margin-bottom: 25px;
+}
+#note {
+    padding: 50px;
+}
+#felder {
+    display: grid;
+    justify-content: center;
+}
+
