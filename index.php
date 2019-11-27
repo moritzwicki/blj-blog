@@ -9,11 +9,12 @@ $pdo = new PDO('mysql:host=localhost;dbname=blog', $user, $password, [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
 ]);
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-$name = $_POST["name"] ?? '';
-$titel = $_POST["posttitel"] ?? '';
-$text = $_POST["posttext"] ?? '';
-}
+//if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+$name = $_POST['name'] ?? '';
+$titel = $_POST['posttitel'] ?? '';
+$text = $_POST['textarea'] ?? '';
+$date = $_POST['created_at'] ?? '';
+//}
 $stmt = $pdo->prepare("INSERT INTO `posts` (created_by, post_title, post_text) VALUES (:by, :on, :text) ");
 $stmt->execute([':by' => $name, ':on' => $titel, ':text' => $text]);
 
@@ -65,12 +66,15 @@ if (count($errors) === 0) {
 </div>
 <div>
     <h2>Veröffenlichte Posts</h2>
-    <?php
-    $stmt = $pdo->query('SELECT * FROM `posts`');
-    foreach($stmt->fetchAll() as $x) {
-        print_r ($x);
-    }
-    ?>
+   <?php
+      $sql = "SELECT created_at, created_by, post_title, post_text FROM posts";
+      foreach ($pdo->query($sql) as $row) {
+          echo $row['post_title']."<br />";
+          echo $row['created_at']."<br />";
+          echo $row['created_by']."<br />";
+          echo $row['post_text']."<br />";
+      }
+   ?>
 </main>
 <aside class = "sidebar"> 
 <h4>Weitere Blogs:</h4>
