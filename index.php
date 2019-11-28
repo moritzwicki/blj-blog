@@ -20,6 +20,18 @@ $bildurl = htmlentities($_POST['bildurl'] ?? '');
 $stmt = $pdo->prepare("INSERT INTO `posts` (created_by, post_title, post_text, post_url) VALUES (:by, :on, :text, :url) ");
 $stmt->execute([':by' => $name, ':on' => $titel, ':text' => $text, ':url' => $bildurl]);
 
+if($name === '') {
+    $errors[] = "Sie haben kein Name eingegeben";
+}
+if($titel === '') {
+    $errors[] = "Sie haben kein Titel eingegeben";
+}
+if($text === '') {
+    $errors[] = "Sie haben kein Text geschrieben";
+}
+if(count($errors) === 0) {
+    $formSet = true;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,11 +69,11 @@ $stmt->execute([':by' => $name, ':on' => $titel, ':text' => $text, ':url' => $bi
 
 <div id ="felder">
 <div class = "benutzername">
-    <label class="eingabe" for="name">Benutzername</label> 
+    <label class="eingabe" for="name">Benutzername:</label> 
     <input type="text" name="name" class = "nameneingabe"><br>
 </div>
 <div class = "eingabetitel">
-    <label class="eingabe" for="posttitel">Titel deines Posts</label>
+    <label class="eingabe" for="posttitel">Titel:</label>
     <input type="text" name="posttitel" class = "blogtitel"><br>
 </div>
 <div class = "eingabebild">
@@ -81,8 +93,13 @@ $stmt->execute([':by' => $name, ':on' => $titel, ':text' => $text, ':url' => $bi
     <aside class = "sidebar">
     <h2>Veröffenlichte Posts</h2>
     
-   <?php
    
+   
+
+<?php foreach ($errors as $error) : ?>
+    <li><?= $error ?></li>
+    <?php endforeach; ?>
+    <?php
       $sql = "SELECT created_at, created_by, post_title, post_text, post_url FROM posts";
       $sql = "SELECT * FROM posts ORDER BY created_at desc";
       foreach ($pdo->query($sql) as $row) {
@@ -90,7 +107,7 @@ $stmt->execute([':by' => $name, ':on' => $titel, ':text' => $text, ':url' => $bi
           echo $row['created_at']."<br />";
           echo $row['created_by']."<br />";
           echo $row['post_text']."<br />";
-          echo "<img class = 'foto' src = '{$row[post_url]}'><br />";
+          echo "<img class = 'foto' src = '{$row["post_url"]}'><br />";
         
         }
       
