@@ -11,21 +11,14 @@ $pdo = new PDO('mysql:host=localhost;dbname=blog', $user, $password, [
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
 ]);
 //if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-$name = $_POST['name'] ?? '';
-$titel = $_POST['posttitel'] ?? '';
-$text = $_POST['textarea'] ?? '';
+$name = htmlentities($_POST['name'] ?? '');
+$titel = htmlentities($_POST['posttitel'] ?? '');
+$text = htmlentities($_POST['textarea'] ?? '');
 $date = $_POST['created_at'] ?? '';
+$bildurl = htmlentities($_POST['bildurl'] ?? '');
 //}
-$stmt = $pdo->prepare("INSERT INTO `posts` (created_by, post_title, post_text) VALUES (:by, :on, :text) ");
-$stmt->execute([':by' => $name, ':on' => $titel, ':text' => $text]);
-
-if ($name === '') {
-    $errors[] = 'Bitte geben Sie einen Namen ein.';
-}
-if (count($errors) === 0) {
-    $formSent = true;
-}
-
+$stmt = $pdo->prepare("INSERT INTO `posts` (created_by, post_title, post_text, post_url) VALUES (:by, :on, :text, :url) ");
+$stmt->execute([':by' => $name, ':on' => $titel, ':text' => $text, ':url' => $bildurl]);
 
 ?>
 <!DOCTYPE html>
@@ -37,17 +30,31 @@ if (count($errors) === 0) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body id = "container">
+<body>
+    <div id = "container">
 <header class = "header">
-<h1>Erstelle ein Blockbeitrag</h1>
+<h1 class = "titel">Erstelle ein Blockbeitrag</h1>
 
 
 </header>
+<nav class = "navigation"> 
 
+<ul class = "blogkollegen">
+    <h4>Weitere Blogs:</h4>
+<li>Erin Bachmann:</li>
+<li>Davide Trinkler:</li>
+<li>Joshua Odermatt:</li>
+<li>Alessio Vangelisti:</li>
+<li>Darvin Windlin:</li>
+<li>Nicola Fioretti:</li>
+<li>Marvin Putschert:</li>
+<li>Luca Aeberhard:</li>
+</nav>    
 
 <main class = "inhalt">
     <form action ="index.php" method="POST">
 <h2>Blog erstellen</h2>
+
 <div id ="felder">
 <div class = "benutzername">
     <label class="eingabe" for="name">Benutzername</label> 
@@ -57,38 +64,41 @@ if (count($errors) === 0) {
     <label class="eingabe" for="posttitel">Titel deines Posts</label>
     <input type="text" name="posttitel" class = "blogtitel"><br>
 </div>
+<div class = "eingabebild">
+    <label class = "bildinput" for = "bildurl">Bild einfügen </label>
+    <input type="text" name="bildurl" class ="bildadresse"><br> 
+</div>
 <div class = "eingabeblog">    
     <label for="textarea" class="eingabetext">Schreibe dein Post </label>
     <textarea name="textarea" id="posttext"  rows ="4" cols = "50"></textarea>
 </div>
-<div>
+<div class = "button">
 <input type="submit" name ="absenden" value="Absenden" >
 </div>
 </div>
-<div>
+</main>
+
+    <aside class = "sidebar">
     <h2>Veröffenlichte Posts</h2>
+    
    <?php
-      $sql = "SELECT created_at, created_by, post_title, post_text FROM posts";
+   $a = 1;
+   while ($a < 5 ) {
+      $sql = "SELECT created_at, created_by, post_title, post_text, post_url FROM posts";
+      $sql = "SELECT * FROM posts ORDER BY created_at desc";
       foreach ($pdo->query($sql) as $row) {
           echo $row['post_title']."<br />";
           echo $row['created_at']."<br />";
           echo $row['created_by']."<br />";
           echo $row['post_text']."<br />";
+          echo "<img class = 'foto' src = '$row [post_url]'><br />";
       }
+      $a++;
+    }
+
    ?>
-</main>
-<aside class = "sidebar"> 
-<h4>Weitere Blogs:</h4>
-<ul>
-<li>Erin Bachmann:</li>
-<li>Davide Trinkler:</li>
-<li>Joshua Odermatt:</li>
-<li>Alessio Vangelisti:</li>
-<li>Darvin Windlin:</li>
-<li>Nicola Fioretti:</li>
-<li>Marvin Putschert:</li>
-<li>Luca Aeberhard:</li>
-</aside>    
+</aside>
+
 
 </body>
 </html>

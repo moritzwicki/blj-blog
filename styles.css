@@ -1,28 +1,44 @@
 #container {
-    background-color: rgb(235, 223, 175);
     display: grid;
-    grid-template-columns: 200px,500px;
-    grid-template-rows: 500px,500px;
-    padding-bottom: 100px;
-    
+    background: linear-gradient(21deg, #10abff, #1beabd);
+    font-family: fantasy;
+    padding-left: 20%;
+    margin: 29px;
+    grid-row: auto;
+    grid-column: auto;
 }
 
 
-
+.titel {
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
 
 h2 {
     display: grid;
     justify-content: center;
     padding: 25px;
 }
-.sidebar {
+.navigation {
     display: grid;  
-    justify-content: left;
     grid-column-start: 1;
-    grid-column-end: 2; 
+    grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 3;
     margin: 10px;
+    text-align: left;
+    
+
+}
+.sidebar {
+    display: grid;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
 }
 
 .inhalt {
@@ -30,21 +46,26 @@ h2 {
     display: grid;
     grid-column-start: 2;
     grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
     margin: 10px;
     margin-top: 10px;
-    justify-content: center;
+    
+    
+    
 }
+
 .header {
     display: grid;
     grid-row-start: 1;
     grid-row-end: 2;
     grid-column-start: 1;
     grid-column-end: 3;
-    margin: 10px;
-    justify-content: center;
+    margin: 10px;  
 }
 .eingabe {
     padding-right: 100%;
+    
     
 }
 .eingabetext {
@@ -66,5 +87,26 @@ h2 {
 #felder {
     display: grid;
     justify-content: center;
+    text-align: center;
+}
+.bildinput {
+    padding-right: 100%;
+    margin-bottom: 10px;
+}
+
+.eingabebild {
+    margin-bottom: 25px;
+}
+.bildadresse {
+    padding: 10px;
+    margin-bottom: 25px;
+}
+
+
+.blogkollegen {
+    padding-top: 10px;
+}
+.benutzername {
+    text-align: center;
 }
 
