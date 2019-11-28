@@ -71,7 +71,7 @@ if(count($errors) === 0) {
 
 <main class = "inhalt">
     <form action ="index.php" method="POST">
-<h2>Blog erstellen</h2>
+<h2>Post erstellen</h2>
 
 <div id ="felder">
 <div class = "benutzername">
@@ -103,9 +103,10 @@ if(count($errors) === 0) {
    
 
 <?php foreach ($errors as $error) : ?>
-    <li><?= $error ?></li>
+    <li><?=  $error ?></li>
     <?php endforeach; ?>
     <?php
+    if ($formSet === true){
       $sql = "SELECT created_at, created_by, post_title, post_text, post_url FROM posts";
       $sql = "SELECT * FROM posts ORDER BY created_at desc";
       foreach ($pdo->query($sql) as $row) {
@@ -116,7 +117,7 @@ if(count($errors) === 0) {
           echo "<img class = 'foto' src = '{$row["post_url"]}'><br />";
         
         }
-      
+    }
 
    ?>
 </aside>
