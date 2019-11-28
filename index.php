@@ -82,8 +82,7 @@ $stmt->execute([':by' => $name, ':on' => $titel, ':text' => $text, ':url' => $bi
     <h2>Veröffenlichte Posts</h2>
     
    <?php
-   $a = 1;
-   while ($a < 5 ) {
+   
       $sql = "SELECT created_at, created_by, post_title, post_text, post_url FROM posts";
       $sql = "SELECT * FROM posts ORDER BY created_at desc";
       foreach ($pdo->query($sql) as $row) {
@@ -91,10 +90,10 @@ $stmt->execute([':by' => $name, ':on' => $titel, ':text' => $text, ':url' => $bi
           echo $row['created_at']."<br />";
           echo $row['created_by']."<br />";
           echo $row['post_text']."<br />";
-          echo "<img class = 'foto' src = '$row [post_url]'><br />";
-      }
-      $a++;
-    }
+          echo "<img class = 'foto' src = '{$row[post_url]}'><br />";
+        
+        }
+      
 
    ?>
 </aside>
