@@ -10,6 +10,14 @@ $pdo = new PDO('mysql:host=localhost;dbname=blog', $user, $password, [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
 ]);
+
+$user = 'blj';
+$password = '123';
+
+$pdo1 = new PDO('mysql:host=10.20.18.111;dbname=ipadressen', $user, $password, [
+PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+]);
 //if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 $name = htmlentities($_POST['name'] ?? '');
 $titel = htmlentities($_POST['posttitel'] ?? '');
@@ -50,17 +58,15 @@ if(count($errors) === 0) {
 
 </header>
 <nav class = "navigation"> 
+<ul>
+            <?php
+            $stmt = $pdo1->query('SELECT * FROM `ipadressen`');
+            foreach($stmt->fetchAll() as $x) {
+                echo "<li><a href='http://$x[Ip]' class='andereblogs'>$x[vorname]</a></li>";
+            }
+            ?>
+        </ul>
 
-<ul class = "blogkollegen">
-    <h4>Weitere Blogs:</h4>
-<li>Erin Bachmann:</li>
-<li>Davide Trinkler:</li>
-<li>Joshua Odermatt:</li>
-<li>Alessio Vangelisti:</li>
-<li>Darvin Windlin:</li>
-<li>Nicola Fioretti:</li>
-<li>Marvin Putschert:</li>
-<li>Luca Aeberhard:</li>
 </nav>    
 
 <main class = "inhalt">
