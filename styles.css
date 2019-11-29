@@ -1,18 +1,28 @@
+label {
+    display: block;
+}
+
+aside {
+    margin-left: 100px;
+    
+}
+
 #container {
     display: grid;
     background: linear-gradient(21deg, #10abff, #1beabd);
-    font-family: fantasy;
-    margin: 29px;
+    font-family: 'Bree Serif', serif;
+    grid-template-columns: auto,auto,auto;
+    grid-template-rows: auto,auto,auto;
     
 }
 
 
 .titel {
-    text-align: center;
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
+    font-size: 50px;
 }
 
 h2 {
@@ -26,7 +36,7 @@ h2 {
     grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 3;
-    margin: 10px;
+    margin-right: 10px;
     text-align: left;
     
 
@@ -37,7 +47,7 @@ h2 {
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
-    word-break: break-word;
+    
 }
 
 .inhalt {
@@ -47,8 +57,8 @@ h2 {
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-    margin: 10px;
-    margin-top: 10px;
+    text-align: center;
+    justify-content: center;
     
     
     
@@ -60,44 +70,11 @@ h2 {
     grid-row-end: 2;
     grid-column-start: 1;
     grid-column-end: 3;
-    margin: 10px;  
-}
-.eingabe {
-    padding-right: 100%;
-    
-    
-}
-.eingabetext {
-    padding-right: 100%;
-    
-   
-}
-.nameneingabe {
-    padding: 10px;
-    margin-bottom: 25px;
-}
-.blogtitel {
-    padding: 10px;
-    margin-bottom: 25px;
-}
-#note {
-    padding: 50px;
-}
-#felder {
-    display: grid;
-    justify-content: center;
-    text-align: center;
-}
-.bildinput {
-    padding-right: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 10px;  
+    text-align: end;
 }
 
-.eingabebild {
-    margin-bottom: 25px;
-}
-.bildadresse {
-    padding: 10px;
+#felder {
     margin-bottom: 25px;
 }
 
@@ -105,9 +82,7 @@ h2 {
 .blogkollegen {
     padding-top: 10px;
 }
-.benutzername {
-    text-align: center;
-}
+
 .foto {
     height: 300px;
     width: auto;
@@ -119,4 +94,28 @@ a:link {
 a:visited {
     color: black;
 }
+.bildinput {
+    padding-right: 100%;
+    text-align: center;
+    justify-content: center;
+
+}
+#posttitel {
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 14px;
+}
+
+    
+    
+    
+    /*@media only screen and (min-width: 900px and 1000px ) {
+        .sidebar, .inhalt, .navigation  {
+            grid-template-columns: auto,auto,auto,auto;
+
+        }
+
+       
+      }*/
+
 
