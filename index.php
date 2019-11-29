@@ -11,10 +11,10 @@ $pdo = new PDO('mysql:host=localhost;dbname=blog', $user, $password, [
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
 ]);
 
-$user = 'blj';
-$password = '123';
+$user1 = 'd041e_gibucher';
+$password1 = '54321_Db!!!';
 
-$pdo1 = new PDO('mysql:host=10.20.18.111;dbname=ipadressen', $user, $password, [
+$pdo1 = new PDO('mysql:host=10.20.18.122;dbname=d041e_gibucher', $user1, $password1, [
 PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
 ]);
@@ -59,10 +59,11 @@ if(count($errors) === 0) {
 </header>
 <nav class = "navigation"> 
 <ul>
+    <h2>Blogs von Kollegen</h2>
             <?php
             $stmt = $pdo1->query('SELECT * FROM `ipadressen`');
             foreach($stmt->fetchAll() as $x) {
-                echo "<li><a href='http://$x[Ip]' class='andereblogs'>$x[vorname]</a></li>";
+              echo "<li><a href='http://$x[Ip]' class='andereblogs'>$x[vorname]</a></li>";
             }
             ?>
         </ul>
@@ -93,7 +94,11 @@ if(count($errors) === 0) {
 <div class = "button">
 <input type="submit" name ="absenden" value="Absenden" >
 </div>
+<?php foreach ($errors as $error) : ?>
+    <li><?=  $error ?></li>
+    <?php endforeach; ?>
 </div>
+
 </main>
 
     <aside class = "sidebar">
@@ -102,13 +107,11 @@ if(count($errors) === 0) {
    
    
 
-<?php foreach ($errors as $error) : ?>
-    <li><?=  $error ?></li>
-    <?php endforeach; ?>
+
     <?php
     if ($formSet === true){
       $sql = "SELECT created_at, created_by, post_title, post_text, post_url FROM posts";
-      $sql = "SELECT * FROM posts ORDER BY created_at desc";
+      $sql = "SELECT * From posts ORDER BY created_at DESC LIMIT 5";
       foreach ($pdo->query($sql) as $row) {
           echo $row['post_title']."<br />";
           echo $row['created_at']."<br />";

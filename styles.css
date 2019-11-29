@@ -2,10 +2,8 @@
     display: grid;
     background: linear-gradient(21deg, #10abff, #1beabd);
     font-family: fantasy;
-    padding-left: 20%;
     margin: 29px;
-    grid-row: auto;
-    grid-column: auto;
+    
 }
 
 
@@ -34,12 +32,12 @@ h2 {
 
 }
 .sidebar {
-    display: grid;
+    display: inline-block;
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 3;
-    word-wrap: normal;
+    word-break: break-word;
 }
 
 .inhalt {
@@ -111,8 +109,14 @@ h2 {
     text-align: center;
 }
 .foto {
-    height: 150px;
+    height: 300px;
     width: auto;
 
+}
+a:link {
+    color: black;
+}
+a:visited {
+    color: black;
 }
 
