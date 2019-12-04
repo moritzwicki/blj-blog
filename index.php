@@ -123,12 +123,15 @@ $bildurl = htmlentities($_POST['bildurl'] ?? '');
             ?>
             </div>
             <?php
-            echo $row['created_at']."<br />";
             echo $row['created_by']."<br />";
             echo $row['post_text']."<br />";
             echo "<img class = 'foto' src = '{$row["post_url"]}'><br />";
+            ?>
+            <div class = "zeitangabe">
+            <?php
+            echo $row['created_at']."<br />";
         ?>
-        
+        </div>
         <?php
         }
    ?>

@@ -11,8 +11,6 @@ aside {
     display: grid;
     background: linear-gradient(21deg, #10abff, #1beabd);
     font-family: 'Bree Serif', serif;
-    grid-template-columns: auto,auto,auto;
-    grid-template-rows: auto,auto,auto;
     
 }
 
@@ -86,6 +84,9 @@ h2 {
 .foto {
     height: 300px;
     width: auto;
+    text-align: center;
+    justify-content: center;
+    margin-top: 20px;
 
 }
 a:link {
@@ -97,7 +98,6 @@ a:visited {
 .bildinput {
     padding-right: 100%;
     text-align: center;
-    justify-content: center;
 
 }
 #posttitel {
@@ -105,17 +105,9 @@ a:visited {
     font-weight: bold;
     padding-bottom: 14px;
 }
-
+.zeitangabe {
     
+margin-bottom: 50px;
     
-    
-    /*@media only screen and (min-width: 900px and 1000px ) {
-        .sidebar, .inhalt, .navigation  {
-            grid-template-columns: auto,auto,auto,auto;
-
-        }
-
-       
-      }*/
-
+}
 
